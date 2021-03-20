@@ -1,5 +1,5 @@
 ---
-author: "未命名 B01201001 一般系"
+author: "王康齡 B05102068 外文系"
 title: "HW 4: List, Loop, and Data frame"
 date: | 
   | 2021-03-18
@@ -34,14 +34,20 @@ df
 ```
 
 此題使用的是 R 的內建資料 `ToothGrowth`，請使用 `?ToothGrowth` 閱讀此資料集的說明，並使用上課講到的指令 (e.g. `dim()`, `glimpse()`, `View()`, ...) 幫助自己熟悉這份資料。
-
+dim(ToothGrowth)
+glimpse(ToothGrowth)
+View(ToothGrowth)
 
 ### Subsetting I (20 分)
-
+View(df)
 請從 `df` 中 (1) 篩選出 `supp` 變項為 `VC` 的所有觀察值，並 (2) 只保留 `len` 與 `supp` 這兩個變項。
 
 ```{r}
 # Write your code here
+df[1:30, 1:2]; 
+supp_VC <- df[,'supp'] == 'VC'
+vec_supp_VC <- supp_VC[,1]
+df[vec_supp_VC, 1:2]
 
 # should print out:
 #> # A tibble: 30 x 2
@@ -67,7 +73,8 @@ df
 
 ```{r}
 # Write your code here
-
+len_below25 <- df$len < 25
+df[vec_supp_VC & len_below25, ]
 # should print out:
 #> # A tibble: 24 x 3
 #>      len supp   dose
@@ -92,7 +99,8 @@ df
 
 ```{r}
 # Write your code here
-
+df_leng_plus15_times_dose_biggerthan40 <- (df$len + 15)*df$dose > 40
+df[df_leng_plus15_times_dose_biggerthan40, ]
 # should print out:
 #> # A tibble: 24 x 3
 #>      len supp   dose
