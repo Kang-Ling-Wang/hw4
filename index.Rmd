@@ -134,12 +134,18 @@ df[df_leng_plus15_times_dose_biggerthan40, ]
 1. 修改 list 裡面元素的語法與 vector 類似：
   
     ```{r}
-    lst <- list(list(first = "Tiger"))
-    lst
+    lst <- list(
+           list(name = "kai", age = 40),
+           list(name = "pooh", age = 20),
+           list(name = "tiger", age = 19),
+           list(name = "piglet", age = 18))
     
-    lst[[1]]$first <- "Pooh"
-    lst
-    ```
+    lst <- list(
+           name = "kai", age = 40,
+           name = "pooh", age = 20,
+           name = "tiger", age = 19,
+           name = "piglet", age = 18)
+
 
 2. 撰寫 `n_years_later()` 時，需要使用到 for 迴圈或是 `lapply()`，不可以一個一個修改
 
@@ -154,11 +160,20 @@ member <- list(
 )
 ##### Do Not modify the code above #####
 
-n_years_later <- function(member_data, years) {
-  # Write your code here
+
+for (y in 1:-1) {
+for (i in seq_along(member)) {
+  n_years_later <- function(member, y) { #為什麼這行不能移到loop之上?
+   m1 <- member[[1]]
+   m2 <- member[[2]]
+   m3 <- member[[3]]
+   m4 <- member[[4]]
 }
-
-
+   phrases <- c(m1$age - y, m2$age - y, m3$age - y, m4$age - y)
+}
+   print(phrases)
+}
+  
 ##### Do Not modify the code below #####
 member[[5]] <- list(name = "Obama", age = 59)
 for (y in -1:1) {
@@ -179,7 +194,10 @@ for (y in -1:1) {
    
 ```{r}
 # Write your code here
+library(readr)
+cute_cute <- read_csv(".\\week3Rclass.csv")
 
+View(cute_cute)
 # Do not modify the code below
 cute_cute
 # Should print out
@@ -218,7 +236,10 @@ Q_Q = data.frame(
 ####### Do Not modify the code above #########
 
 # Write your code here
-
+Q_Q[,6][Q_Q[,6] > 4.3] <- NA
+Q_Q[,2][Q_Q[,2] == "M"] <- 1L
+Q_Q[,2][Q_Q[,2] == "F"] <- 2L
+Q_Q[,2][Q_Q[,2] != 1L & Q_Q[,2]!= 2L] <- 0L
 
 # Do Not modify the code below
 Q_Q
@@ -240,9 +261,11 @@ Q_Q
   
 ```{r}
 # Write your code here
+cute_cute["favorite_word"][cute_cute["q_self"]>=70] <- "根本可愛動物區"
+cute_cute["favorite_word"][cute_cute["q_self"]<70] <- "一代一代"
 
 # Do not modify the code below
-cute_cute
+View(cute_cute)
 # Should print out
 #> # A tibble: 85 x 7
 #>    nickname   gender grade q_self q_teacher   GPA favorite_word 
