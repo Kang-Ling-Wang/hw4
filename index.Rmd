@@ -44,7 +44,6 @@ View(df)
 
 ```{r}
 # Write your code here
-df[1:30, 1:2]; 
 supp_VC <- df[,'supp'] == 'VC'
 vec_supp_VC <- supp_VC[,1]
 df[vec_supp_VC, 1:2]
@@ -163,7 +162,7 @@ member <- list(
 
 for (y in 1:-1) {
 for (i in seq_along(member)) {
-  n_years_later <- function(member, y) { #為什麼這行不能移到loop之上?
+  n_years_later <- function(member, y) {
    m1 <- member[[1]]
    m2 <- member[[2]]
    m3 <- member[[3]]
@@ -172,8 +171,17 @@ for (i in seq_along(member)) {
    phrases <- c(m1$age - y, m2$age - y, m3$age - y, m4$age - y)
 }
    print(phrases)
-}
-  
+};
+   n_years_later <- function(member, y) {
+     for (y in 1:-1){
+     for (i in seq_along(member)){
+          age_later <- member[[i]]$age + y
+     }
+       
+     }
+     return(age_later)
+   }
+
 ##### Do Not modify the code below #####
 member[[5]] <- list(name = "Obama", age = 59)
 for (y in -1:1) {
@@ -236,10 +244,14 @@ Q_Q = data.frame(
 ####### Do Not modify the code above #########
 
 # Write your code here
+as.character(Q_Q[,2])
 Q_Q[,6][Q_Q[,6] > 4.3] <- NA
 Q_Q[,2][Q_Q[,2] == "M"] <- 1L
 Q_Q[,2][Q_Q[,2] == "F"] <- 2L
 Q_Q[,2][Q_Q[,2] != 1L & Q_Q[,2]!= 2L] <- 0L
+as.integer(Q_Q[,2])
+
+
 
 # Do Not modify the code below
 Q_Q
@@ -261,9 +273,10 @@ Q_Q
   
 ```{r}
 # Write your code here
+cute_cute$favorite_word = "a"
 cute_cute["favorite_word"][cute_cute["q_self"]>=70] <- "根本可愛動物區"
 cute_cute["favorite_word"][cute_cute["q_self"]<70] <- "一代一代"
-
+cute_cute
 # Do not modify the code below
 View(cute_cute)
 # Should print out
